@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Volume Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #1a2b4a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      width: 90%;
+      max-width: 1400px;
+      gap: 20px;
+    }
+    .sidebar {
+      background-color: #223556;
+      padding: 20px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sidebar .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+    }
+    .sidebar .menu-item:hover {
+      background-color: #2b3d5c;
+      border-radius: 5px;
+    }
+    .sidebar .menu-item.selected {
+      background-color: #1e90ff;
+      border-radius: 5px;
+    }
+    .content {
+      background-color: #1f2e4a;
+      padding: 20px;
+      border-radius: 8px;
+      display: grid;
+      gap: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .header-card {
+      background-color: #2b3d5c;
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1;
+      text-align: center;
+    }
+    .header-card h3 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+    .header-card p {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .filter-section {
+      background-color: #2b3d5c;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .filter-section select, .filter-section label {
+      width: 100%;
+      color: white;
+      background: #2b3d5c;
+      border: none;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .chart-card {
+      background-color: #2b3d5c;
+      border-radius: 8px;
+      padding: 20px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-icons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+    .footer-icons .icon {
+      background-color: #2b3d5c;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="menu-item selected">Global</div>
+      <div class="menu-item">North America</div>
+      <div class="menu-item">EMEA</div>
+      <div class="menu-item">APAC</div>
+      <hr>
+      <div class="menu-item">Report/Dashboard</div>
+      <div class="menu-item">Operations</div>
+      <div class="menu-item">Stakeholders</div>
+      <div class="menu-item">Market Analysis</div>
+      <div class="menu-item">Suppliers</div>
+      <footer class="menu-item">© 2024 Webdashboard</footer>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Header Cards -->
+      <div class="header">
+        <div class="header-card">
+          <h3>Tickets Created</h3>
+          <p>26,935</p>
+        </div>
+        <div class="header-card">
+          <h3>Tickets Closed</h3>
+          <p>26,860</p>
+        </div>
+        <div class="header-card">
+          <h3>Closure Rate</h3>
+          <p>99.72%</p>
+        </div>
+        <div class="header-card">
+          <h3>Within SLA</h3>
+          <p>19,539</p>
+        </div>
+      </div>
+
+      <!-- Filters Section -->
+      <div class="filter-section">
+        <label for="year">Year</label>
+        <select id="year">
+          <option value="all">2023</option>
+        </select>
+        <label for="month-year">Month-Year</label>
+        <select id="month-year">
+          <option value="all">All</option>
+        </select>
+        <label for="priority">Priority</label>
+        <select id="priority">
+          <option value="all">All</option>
+        </select>
+        <label for="severity">Severity</label>
+        <select id="severity">
+          <option value="all">All</option>
+        </select>
+        <label for="work-type">Work Type</label>
+        <select id="work-type">
+          <option value="all">All</option>
+        </select>
+        <label for="request-category">Request Category</label>
+        <select id="request-category">
+          <option value="all">All</option>
+        </select>
+      </div>
+
+      <!-- Chart Area -->
+      <div class="charts">
+        <div class="chart-card">Tickets by Priority</div>
+        <div class="chart-card">Tickets by Category</div>
+        <div class="chart-card">Tickets by Severity</div>
+        <div class="chart-card">Top IT Agent</div>
+        <div class="chart-card">Tickets by Work Type</div>
+        <div class="chart-card">Tickets Overtime</div>
+        <div class="chart-card">Average Satisfaction Rating</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Icons -->
+  <div class="footer-icons">
+    <div class="icon">🏠</div>
+    <div class="icon">🔍</div>
+    <div class="icon">🔔</div>
+    <div class="icon">⚙️</div>
+  </div>
+</body>
+</html>

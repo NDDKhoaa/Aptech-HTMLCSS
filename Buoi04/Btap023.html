@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termination Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #1a2b4a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
+    }
+    .sidebar, .content {
+      background-color: #223556;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .sidebar {
+      display: grid;
+      gap: 10px;
+    }
+    .filter, .title {
+      padding: 10px;
+      background-color: #2b3d5c;
+      border-radius: 5px;
+    }
+    .filter select, .filter label {
+      width: 100%;
+      color: white;
+      background: #2b3d5c;
+      border: none;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .header .card {
+      flex: 1;
+      background-color: #2b3d5c;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .card h3 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+    .card p {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .chart {
+      background-color: #2b3d5c;
+      border-radius: 8px;
+      padding: 20px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="title"><h2>Termination</h2></div>
+      <div class="filter">
+        <label for="year">Year</label>
+        <select id="year">
+          <option value="all">All</option>
+        </select>
+      </div>
+      <div class="filter">
+        <label for="locations">Locations</label>
+        <select id="locations">
+          <option value="all">All</option>
+        </select>
+      </div>
+      <div class="filter">
+        <label for="organization">Organization</label>
+        <select id="organization">
+          <option value="all">All</option>
+        </select>
+      </div>
+      <div class="filter">
+        <label for="group">Group</label>
+        <select id="group">
+          <option value="SI DS">SI DS</option>
+          <option value="SI RAM">SI RAM</option>
+          <option value="Group R">Group R</option>
+          <option value="SI EP">SI EP</option>
+          <option value="SI EP NA">SI EP NA</option>
+          <option value="SI RSS">SI RSS</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Header Cards -->
+      <div class="header">
+        <div class="card" style="background-color: #319391;">
+          <h3>Total</h3>
+          <p>800</p>
+        </div>
+        <div class="card" style="background-color: #49d9b9;">
+          <h3>Involuntary</h3>
+          <p>200</p>
+        </div>
+        <div class="card" style="background-color: #f7a35c;">
+          <h3>Voluntary</h3>
+          <p>100</p>
+        </div>
+        <div class="card" style="background-color: #d977ab;">
+          <h3>Female</h3>
+          <p>200</p>
+        </div>
+        <div class="card" style="background-color: #ff6b6b;">
+          <h3>Male</h3>
+          <p>100</p>
+        </div>
+      </div>
+      
+      <!-- Charts -->
+      <div class="charts">
+        <div class="chart"><p>Termination by Grade</p></div>
+        <div class="chart"><p>Termination by Age</p></div>
+        <div class="chart"><p>Termination by Organization</p></div>
+        <div class="chart"><p>Termination by Position</p></div>
+        <div class="chart"><p>Termination by Business Unit</p></div>
+        <div class="chart"><p>Termination by Tenure</p></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

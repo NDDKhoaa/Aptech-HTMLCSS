@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Coffee Thơm Ngon</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+        /* Header */
+        .header {
+            background-color: #8B4513;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #8B4513;
+            padding: 10px 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        /* Banner */
+        .banner {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
+        .banner h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        /* About Section */
+        .about {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .about h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .about p {
+            font-size: 1em;
+            color: #555;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* Menu Section */
+        .menu {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .menu h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .menu-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+        }
+        .menu-item h4 {
+            font-size: 1.2em;
+            color: #333;
+            margin: 10px 0;
+        }
+        .menu-item p {
+            font-size: 1em;
+            color: #777;
+        }
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Cửa Hàng Coffee Thơm Ngon</h1>
+    </div>
+    <div class="navbar">
+        <a href="#about">Giới Thiệu</a>
+        <a href="#menu">Thực Đơn</a>
+        <a href="#contact">Liên Hệ</a>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+        <img src="https://image.bnews.vn/MediaUpload/Org/2021/01/23/the-coffee-house2.jpg" alt="Coffee Shop Banner">
+        <h2>Chào Mừng Bạn Đến Với Thế Giới Cà Phê</h2>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h3>Giới Thiệu</h3>
+        <p>Chào mừng bạn đến với Coffee Ngon - nơi bạn có thể thưởng thức những tách cà phê đậm đà, thơm ngon. Được sáng lập với niềm đam mê về cà phê và mong muốn mang đến trải nghiệm tuyệt vời cho khách hàng, chúng tôi cam kết sử dụng những hạt cà phê chất lượng cao, chế biến bởi các barista giàu kinh nghiệm. Dù bạn là một người yêu thích hương vị cổ điển hay muốn thử những sáng tạo mới lạ, Coffee House đều có những lựa chọn hoàn hảo dành cho bạn.</p>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <h3>Thực Đơn</h3>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="https://blogstudio.s3.theshoppad.net/coffeeheroau/ec178d83e5f597b162cda1e60cb64194.jpg" alt="Espresso">
+                <h4>Espresso</h4>
+                <p>Giá: 30.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/800px-Caffe_Latte_at_Pulse_Cafe.jpg" alt="Latte">
+                <h4>Latte</h4>
+                <p>Giá: 40.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipe%20Ramp%20Up%2F2022-07-Cappuccino%2FCappuccino" alt="Cappuccino">
+                <h4>Cappuccino</h4>
+                <p>Giá: 35.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://blogstudio.s3.theshoppad.net/coffeeheroau/ec178d83e5f597b162cda1e60cb64194.jpg" alt="Espresso">
+                <h4>Espresso</h4>
+                <p>Giá: 30.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/800px-Caffe_Latte_at_Pulse_Cafe.jpg" alt="Latte">
+                <h4>Latte</h4>
+                <p>Giá: 40.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipe%20Ramp%20Up%2F2022-07-Cappuccino%2FCappuccino" alt="Cappuccino">
+                <h4>Cappuccino</h4>
+                <p>Giá: 35.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://blogstudio.s3.theshoppad.net/coffeeheroau/ec178d83e5f597b162cda1e60cb64194.jpg" alt="Espresso">
+                <h4>Espresso</h4>
+                <p>Giá: 30.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/800px-Caffe_Latte_at_Pulse_Cafe.jpg" alt="Latte">
+                <h4>Latte</h4>
+                <p>Giá: 40.000₫</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipe%20Ramp%20Up%2F2022-07-Cappuccino%2FCappuccino" alt="Cappuccino">
+                <h4>Cappuccino</h4>
+                <p>Giá: 35.000₫</p>
+            </div>
+            <!-- Repeat menu items as necessary -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Coffee Ngon. Bảo lưu mọi quyền.
+    </div>
+</body>
+</html>

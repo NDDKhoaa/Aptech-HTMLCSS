@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations</title>
+    <style>
+        .result { 
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array Operations</h1>
+    <div id="output" class="result"></div>
+
+    <script>
+        let arr = [3, 451, 5, 2, 6, 76, 3, 5, 1, 243, 6, 4];
+        let results = [];
+
+        // a. Print all elements
+        function printArray() {
+            let result = "";
+            for(let i = 0; i < arr.length; i++) {
+                result += arr[i] + " ";
+            }
+            return result.trim();
+        }
+
+        // b. Calculate sum
+        function calculateSum() {
+            let sum = 0;
+            let i = 0;
+            while(i < arr.length) {
+                sum += arr[i];
+                i++;
+            }
+            return sum;
+        }
+
+        // c. Find min and max
+        function findMinMax() {
+            let min = arr[0], max = arr[0];
+            for(let num of arr) {
+                if(num < min) min = num;
+                if(num > max) max = num;
+            }
+            return { min, max };
+        }
+
+        // d. Calculate average
+        function calculateAverage() {
+            return calculateSum() / arr.length;
+        }
+
+        // f. Reverse array
+        function reverseArray() {
+            return [...arr].reverse();
+        }
+
+        // g. Count occurrences
+        function countOccurrences() {
+            let count = {};
+            arr.forEach(num => {
+                count[num] = (count[num] || 0) + 1;
+            });
+            return count;
+        }
+
+        // h. Insert 117 at start
+        function insertAtStart() {
+            return [117, ...arr];
+        }
+
+        // i. Check if ascending
+        function isAscending() {
+            for(let i = 1; i < arr.length; i++) {
+                if(arr[i] < arr[i-1]) return false;
+            }
+            return true;
+        }
+
+        // k. Sort ascending
+        function sortAscending() {
+            return [...arr].sort((a, b) => a - b);
+        }
+
+        // l. Sort descending
+        function sortDescending() {
+            return [...arr].sort((a, b) => b - a);
+        }
+
+        // m. Get even numbers
+        function getEvenNumbers() {
+            return arr.filter(num => num % 2 === 0);
+        }
+
+        // n. Get odd numbers
+        function getOddNumbers() {
+            return arr.filter(num => num % 2 !== 0);
+        }
+
+        // Display results
+        const output = `
+Original Array: ${printArray()}
+
+Sum: ${calculateSum()}
+Min/Max: ${JSON.stringify(findMinMax())}
+Average: ${calculateAverage()}
+Reversed: ${reverseArray()}
+Occurrences: ${JSON.stringify(countOccurrences(), null, 2)}
+After Insert 117: ${insertAtStart()}
+Is Ascending: ${isAscending()}
+Sorted Ascending: ${sortAscending()}
+Sorted Descending: ${sortDescending()}
+Even Numbers: ${getEvenNumbers()}
+Odd Numbers: ${getOddNumbers()}
+`;
+
+        document.getElementById('output').innerText = output;
+        console.log(output);
+    </script>
+</body>
+</html>

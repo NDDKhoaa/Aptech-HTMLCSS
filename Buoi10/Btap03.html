@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Statements Demo</title>
+    <style>
+        .container { margin: 20px; }
+        .result { 
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conditional Statements Demo</h1>
+        <div class="result" id="output"></div>
+
+        <script>
+            // a. Check positive/negative number
+            function checkNumber(num) {
+                if (num > 0) return "Số dương";
+                if (num < 0) return "Số âm";
+                return "Số không";
+            }
+
+            // b. Check even/odd
+            function checkEvenOdd(num) {
+                return num % 2 === 0 ? "Số chẵn" : "Số lẻ";
+            }
+
+            // c. Find largest among 3 numbers
+            function findLargest(a, b, c) {
+                return Math.max(a, b, c);
+            }
+
+            // d. Check leap year
+            function isLeapYear(year) {
+                return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+            }
+
+            // e. Check vowel/consonant
+            function checkVowelConsonant(char) {
+                const vowels = 'aeiouAEIOU';
+                if (!char.match(/[a-zA-Z]/)) return "Không phải chữ cái";
+                return vowels.includes(char) ? "Nguyên âm" : "Phụ âm";
+            }
+
+            // f. Solve quadratic equation
+            function solveQuadratic(a, b, c) {
+                if (a === 0 && b === 0) return "Phương trình vô nghiệm";
+                if (a === 0) return `Nghiệm: ${-c/b}`;
+
+                const delta = b*b - 4*a*c;
+                if (delta < 0) return "Phương trình vô nghiệm";
+                
+                if (delta === 0) {
+                    const x = -b/(2*a);
+                    return `Nghiệm kép: ${x}`;
+                }
+
+                const x1 = (-b + Math.sqrt(delta))/(2*a);
+                const x2 = (-b - Math.sqrt(delta))/(2*a);
+                return `Hai nghiệm: ${x1} và ${x2}`;
+            }
+
+            // g. Calculate tax and net salary
+            function calculateSalary(grossSalary) {
+                let taxRate;
+                if (grossSalary >= 20000000) taxRate = 0.20;
+                else if (grossSalary > 15000000) taxRate = 0.15;
+                else if (grossSalary >= 9000000) taxRate = 0.10;
+                else taxRate = 0;
+
+                const tax = grossSalary * taxRate;
+                const netSalary = grossSalary - tax;
+
+                return {
+                    grossSalary,
+                    taxRate: taxRate * 100,
+                    tax,
+                    netSalary
+                };
+            }
+
+            // Test and display results
+            const results = `
+Test Results:
+
+1. Kiểm tra số: ${checkNumber(5)}
+2. Kiểm tra chẵn/lẻ: ${checkEvenOdd(4)}
+3. Số lớn nhất trong (3,7,5): ${findLargest(3,7,5)}
+4. Năm 2024 là năm nhuận?: ${isLeapYear(2024)}
+5. Kiểm tra nguyên âm 'a': ${checkVowelConsonant('a')}
+6. Phương trình (1,5,6): ${solveQuadratic(1,5,6)}
+7. Tính lương 25,000,000:
+${JSON.stringify(calculateSalary(25000000), null, 2)}
+`;
+
+            // Display results
+            document.getElementById('output').innerText = results;
+            console.log(results);
+        </script>
+    </div>
+</body>
+</html>

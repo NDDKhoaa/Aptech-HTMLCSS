@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Buoi04/css/bootstrap-grid.css">
+    <title>Registration Form</title>
+</head>
+
+<body class="container-fluid">
+    <form class="centerform" id="myForm" onsubmit="saveTextAsFile();">
+        <h1 class="form-header">Registration Form</h1>
+        <div class="item">
+            <h2 class="header">Username</h2>
+            <input class="input-text" type="text" name="username" id="username" value="" required>
+        </div>
+        <div class="item">
+            <h2 class="header">Password</h2>
+            <input class="input-text" type="password" name="password" id="password" value="" required>
+        </div>
+        <div class="item">
+            <h2 class="header">Email</h2>
+            <input class="input-text" type="email" name="email" id="email" value="" required>
+        </div>
+        <div class="item">
+            <h2 class="header">Gender</h2>
+            <span><input type="radio" id="gender" name="gender" value="Male"><label>Male</label></span>
+            <span><input type="radio" id="gender" name="gender" value="Female"><label>Female</label></span>
+            <span><input type="radio" id="gender" name="gender" value="Other"><label>Other</label></span>
+        </div>
+        <div class="item">
+            <h2 class="header">Hobbies</h2>
+            <span><input type="checkbox" class="hobbies" value="Sports" name="hobbies"><label>Sports</label></span>
+            <span><input type="checkbox" class="hobbies" value="Music" name="hobbies"><label>Music</label></span>
+            <span><input type="checkbox" class="hobbies" value="Reading" name="hobbies"><label>Reading</label></span>
+        </div>
+        <div class="item">
+            <h2 class="header">Upload Profile</h2>
+            <input class="" type="file">
+        </div>
+        <div class="item">
+            <h2 class="header">Address</h2>
+            <select class="input-text" id="address" name="address" required>
+                <option value="HCM">Ho Chi Minh</option>
+                <option value="HN">Ha Noi</option>
+                <option value="VT">Vung Tau</option>
+                <option value="DN">Da Nang</option>
+            </select>
+        </div>
+        <div class="row submit">
+            <div class="col-sm-1">
+                <input class="button reset" type="reset" value="Reset">
+            </div>
+            <div class="col-sm-8"></div>
+            <div class="col-sm-1">
+                <input class="button submit-button" type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+    <script>
+        function saveTextAsFile() {
+            const nameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById("password").value;
+            const emailInput = document.getElementById('email').value;
+            const genderInput = document.getElementById('gender').value;
+            const hobbiesInput = document.querySelectorAll('.hobbies');
+            const addressInput = document.getElementById('address').value;
+            const hobbies = Array.from(hobbiesInput)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value)
+                .join(', ') || 'None';
+
+            const fileContent = `Username: ${nameInput}\nPassword: ${passwordInput}\nEmail: ${emailInput}\nGender: ${genderInput}\nHobbies: ${hobbies}\nAddress: ${addressInput}`;
+            const blob = new Blob([fileContent], { type: 'text/plain' });
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'Info.txt';
+            downloadLink.innerHTML = "Download File";
+            downloadLink.onclick = destroyClickedElement;
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+        }
+        function destroyClickedElement(event) {
+            document.body.removeChild(event.target);
+        }
+        window.addEventListener('myForm', () => {
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

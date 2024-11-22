@@ -1,0 +1,15 @@
+@keyframes rotateAndSlide {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(1500px, 0) rotate(90deg); }
+    50% { transform: translate(1500px, 800px) rotate(180deg); }
+    75% { transform: translate(0, 800px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    border-radius: 10px;
+    animation: rotateAndSlide 4s ease-in-out infinite;
+}

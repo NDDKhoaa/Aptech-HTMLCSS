@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Form</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .form-container {
+            width: 400px;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="file"],
+        .form-group input[type="email"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .form-group .radio-group,
+        .form-group .checkbox-group {
+            display: flex;
+            gap: 10px;
+        }
+        .form-group .radio-group label,
+        .form-group .checkbox-group label {
+            display: flex;
+            align-items: center;
+        }
+        .form-group .radio-group input,
+        .form-group .checkbox-group input {
+            margin-right: 5px;
+        }
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-buttons button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .reset-btn {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .form-buttons button:hover {
+            opacity: 0.9;
+        }
+        body {
+            background: url("https://gratisography.com/wp-content/uploads/2024/03/gratisography-funflower-800x525.jpg");
+        }
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form action="./labs/lab02/bai1/index.html" method="post">
+            <!-- Text Field -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <!-- Radio Button Group -->
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male"> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
+                    <label><input type="radio" name="gender" value="other"> Other</label>
+                </div>
+            </div>
+
+            <!-- Checkbox Group -->
+            <div class="form-group">
+                <label>Hobbies</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="hobbies" value="sports"> Sports</label>
+                    <label><input type="checkbox" name="hobbies" value="music"> Music</label>
+                    <label><input type="checkbox" name="hobbies" value="reading"> Reading</label>
+                </div>
+            </div>
+
+            <!-- File Upload -->
+            <div class="form-group">
+                <label for="profile-pic">Upload Profile Picture</label>
+                <input type="file" id="profile-pic" name="profile-pic">
+            </div>
+
+            <!-- Dropdown -->
+            <div class="form-group">
+                <label for="profile-address">Address</label>
+                <Select name="address">
+                    <optgroup label="Mien Bac"> 
+                        <option value="HCM" >Ha Noi</option>
+                        <option value="HCM" >Quang Ninh</option>
+                        <option value="HCM" >Phu Tho</option>
+                    </optgroup>
+                    <optgroup label="Mien Trung"> 
+                        <option value="HCM" >Da Nang</option>
+                        <option value="HCM" >Nha Trang</option>
+                        <option value="HCM" >Hue</option>
+                    </optgroup>
+                    <optgroup label="Mien Nam"> 
+                        <option value="HCM" >Ho Chi Minh</option>
+                        <option value="HCM" >Long An</option>
+                        <option value="HCM" >Can Tho</option>
+                    </optgroup>
+                </select>
+            
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-buttons">
+                <button type="reset" class="reset-btn">Reset</button>
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

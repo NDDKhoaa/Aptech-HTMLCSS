@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch-Case Examples</title>
+    <style>
+        .container { margin: 20px; }
+        .result { 
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Switch-Case Examples</h1>
+        <div class="result" id="output"></div>
+
+        <script>
+            // a. Get month name
+            function getMonthName(month) {
+                switch(month) {
+                    case 1: return "Tháng Một";
+                    case 2: return "Tháng Hai";
+                    case 3: return "Tháng Ba";
+                    case 4: return "Tháng Tư";
+                    case 5: return "Tháng Năm";
+                    case 6: return "Tháng Sáu";
+                    case 7: return "Tháng Bảy";
+                    case 8: return "Tháng Tám";
+                    case 9: return "Tháng Chín";
+                    case 10: return "Tháng Mười";
+                    case 11: return "Tháng Mười Một";
+                    case 12: return "Tháng Mười Hai";
+                    default: return "Tháng không hợp lệ";
+                }
+            }
+
+            // b. Get grade
+            function getGrade(score) {
+                switch(true) {
+                    case (score >= 90 && score <= 100):
+                        return "Hạng A+";
+                    case (score >= 80 && score <= 89):
+                        return "Hạng A";
+                    case (score >= 70 && score <= 79):
+                        return "Hạng B";
+                    case (score >= 60 && score <= 69):
+                        return "Hạng C";
+                    case (score >= 0 && score < 60):
+                        return "Hạng D";
+                    default:
+                        return "Điểm không hợp lệ";
+                }
+            }
+
+            // c. Calculate with operator
+            function calculate(num1, num2, operator) {
+                switch(operator) {
+                    case '+': return num1 + num2;
+                    case '-': return num1 - num2;
+                    case '*': return num1 * num2;
+                    case '/': return num2 !== 0 ? num1 / num2 : "Không thể chia cho 0";
+                    default: return "Phép toán không hợp lệ";
+                }
+            }
+
+            // d. Get season
+            function getSeason(month) {
+                switch(month) {
+                    case 3:
+                    case 4:
+                    case 5:
+                        return "Mùa xuân";
+                    case 6:
+                    case 7:
+                    case 8:
+                        return "Mùa hè";
+                    case 9:
+                    case 10:
+                    case 11:
+                        return "Mùa thu";
+                    case 12:
+                    case 1:
+                    case 2:
+                        return "Mùa đông";
+                    default:
+                        return "Tháng không hợp lệ";
+                }
+            }
+
+            // e. Check movie age restriction
+            function checkMovieAge(genre, age) {
+                switch(genre.toUpperCase()) {
+                    case 'HD':
+                        return age > 16 ? "Được phép xem" : "Không đủ tuổi";
+                    case 'KD':
+                        return age > 18 ? "Được phép xem" : "Không đủ tuổi";
+                    case 'HK':
+                    case 'HH':
+                        return "Được phép xem";
+                    default:
+                        return "Thể loại không hợp lệ";
+                }
+            }
+
+            // Test and display results
+            const results = `
+Test Results:
+
+1. Tháng 3: ${getMonthName(3)}
+2. Điểm 85: ${getGrade(85)}
+3. Tính 10 + 5: ${calculate(10, 5, '+')}
+4. Mùa của tháng 7: ${getSeason(7)}
+5. Kiểm tra phim hành động (16 tuổi): ${checkMovieAge('HD', 16)}
+5. Kiểm tra phim kinh dị (19 tuổi): ${checkMovieAge('KD', 19)}
+`;
+
+            // Display results
+            document.getElementById('output').innerText = results;
+            console.log(results);
+        </script>
+    </div>
+</body>
+</html>

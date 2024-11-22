@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Variables Demo</title>
+</head>
+<body>
+    <h1>JavaScript Variables and Objects Demo</h1>
+    <p>Open the browser's console (F12) to see the output</p>
+
+    <!-- Add a container to display results -->
+    <div id="output">
+        <h2>Current Values:</h2>
+        <pre id="results"></pre>
+    </div>
+
+    <script>
+        // Original code from node.js
+        let a = 10;
+        console.log("a =", a);
+
+        let b = '10';
+        console.log("b =", b);
+
+        a = 20;
+        console.log("New value of a =", a);
+
+        const pi = 3.14;
+        console.log("pi =", pi);
+
+        const phone = {
+            ten: 'iPhone 14',
+            hangSanXuat: 'Apple',
+            mauSac: 'Trang',
+            gia: '1000USD'
+        };
+        console.log("Phone object:", phone);
+
+        phone.gia = '750USD';
+        console.log("Phone with new price:", phone);
+
+        phone.ten = 'iPhone 14 promax';
+        console.log("Phone with new name:", phone);
+
+        // Display results in the page
+        const results = document.getElementById('results');
+        results.textContent = `
+            a = ${a}
+            b = ${b}
+            pi = ${pi}
+            
+            Phone Details:
+            Name: ${phone.ten}
+            Manufacturer: ${phone.hangSanXuat}
+            Color: ${phone.mauSac}
+            Price: ${phone.gia}
+        `;
+    </script>
+</body>
+</html>

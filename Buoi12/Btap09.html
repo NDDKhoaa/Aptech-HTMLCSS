@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .price {
+            text-align: right;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .edit-btn {
+            background-color: #28a745;
+        }
+
+        .edit-btn:hover {
+            background-color: #218838;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Quản lý sản phẩm</h2>
+        <!-- Fixed form with proper IDs -->
+        <form id="productForm" onsubmit="addProduct(event)">
+            <input type="hidden" id="editIndex" value="-1">
+            <div class="form-group">
+                <label for="productName">Tên sản phẩm:</label>
+                <input type="text" id="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Giá sản phẩm (VND):</label>
+                <input type="number" id="productPrice" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="productDescription">Mô tả sản phẩm:</label>
+                <textarea id="productDescription" rows="3" required></textarea>
+            </div>
+            <button type="submit" id="submitBtn">Thêm sản phẩm</button>
+        </form>
+
+        <table id="productTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá (VND)</th>
+                    <th>Mô tả</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="productList"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN').format(price);
+        }
+    
+        function addProduct(event) {
+            try {
+                event.preventDefault();
+                
+                // Get form elements
+                const editIndex = document.getElementById('editIndex').value;
+                const name = document.getElementById('productName').value.trim();
+                const price = parseFloat(document.getElementById('productPrice').value);
+                const description = document.getElementById('productDescription').value.trim();
+                const submitBtn = document.getElementById('submitBtn');
+        
+                // Validate inputs
+                if (!name || isNaN(price) || !description) {
+                    alert('Vui lòng điền đầy đủ thông tin sản phẩm');
+                    return;
+                }
+        
+                if (editIndex !== "-1") {
+                    // Update existing product
+                    const tbody = document.getElementById('productList');
+                    const row = tbody.rows[parseInt(editIndex)];
+                    
+                    row.cells[1].textContent = name;
+                    row.cells[2].textContent = formatPrice(price);
+                    row.cells[3].textContent = description;
+                } else {
+                    // Add new product
+                    const tbody = document.getElementById('productList');
+                    const rowNumber = tbody.rows.length + 1;
+                    
+                    const row = tbody.insertRow();
+                    row.insertCell(0).textContent = rowNumber;
+                    row.insertCell(1).textContent = name;
+                    row.insertCell(2).textContent = formatPrice(price);
+                    row.cells[2].className = 'price';
+                    row.insertCell(3).textContent = description;
+                    
+                    const actionsCell = row.insertCell(4);
+                    actionsCell.className = 'action-buttons';
+                    actionsCell.innerHTML = `
+                        <button onclick="editProduct(${rowNumber-1})" class="edit-btn btn-sm">Sửa</button>
+                        <button onclick="deleteProduct(${rowNumber-1})" class="delete-btn btn-sm">Xóa</button>
+                    `;
+                }
+        
+                // Reset form state
+                document.getElementById('productForm').reset();
+                document.getElementById('editIndex').value = "-1";
+                submitBtn.textContent = 'Thêm sản phẩm';
+        
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra: ' + error.message);
+            }
+        }
+
+        function insertRow(rowNumber, name, price, description) {
+            const tbody = document.getElementById('productList');
+            const row = tbody.insertRow();
+            
+            row.insertCell(0).textContent = rowNumber;
+            row.insertCell(1).textContent = name;
+            row.insertCell(2).textContent = formatPrice(price);
+            row.cells[2].className = 'price';
+            row.insertCell(3).textContent = description;
+            
+            const actionsCell = row.insertCell(4);
+            actionsCell.className = 'action-buttons';
+            actionsCell.innerHTML = `
+                <button onclick="editProduct(${rowNumber-1})" class="edit-btn btn-sm">Sửa</button>
+                <button onclick="deleteProduct(${rowNumber-1})" class="delete-btn btn-sm">Xóa</button>
+            `;
+        }
+
+        function editProduct(index) {
+            try {
+                // Get required elements with null checks
+                const tbody = document.getElementById('productList');
+                if (!tbody) {
+                    throw new Error('Product list table not found');
+                }
+        
+                const row = tbody.rows[index];
+                if (!row) {
+                    throw new Error('Row not found');
+                }
+        
+                const nameInput = document.getElementById('productName');
+                const priceInput = document.getElementById('productPrice');
+                const descInput = document.getElementById('productDescription');
+                const editIndexInput = document.getElementById('editIndex');
+                const submitBtn = document.getElementById('submitBtn');
+        
+                if (!nameInput || !priceInput || !descInput || !editIndexInput || !submitBtn) {
+                    throw new Error('Required form elements not found');
+                }
+        
+                // Update form with row data
+                nameInput.value = row.cells[1].textContent;
+                // Remove formatting from price before setting value
+                priceInput.value = parseFloat(row.cells[2].textContent.replace(/[,.]/g, ''));
+                descInput.value = row.cells[3].textContent;
+                editIndexInput.value = index;
+                submitBtn.textContent = 'Cập nhật';
+        
+                // Scroll form into view
+                nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                nameInput.focus();
+        
+            } catch (error) {
+                console.error('Error editing product:', error);
+                alert('Có lỗi xảy ra khi chỉnh sửa sản phẩm: ' + error.message);
+            }
+        }
+
+        function updateRow(index, name, price, description) {
+            const row = document.getElementById('productList').rows[index];
+            row.cells[1].textContent = name;
+            row.cells[2].textContent = formatPrice(price);
+            row.cells[3].textContent = description;
+        }
+
+        function deleteProduct(index) {
+            if (confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
+                document.getElementById('productList').deleteRow(index);
+                updateRowNumbers();
+            }
+        }
+
+        function updateRowNumbers() {
+            const rows = document.getElementById('productList').rows;
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].cells[0].textContent = i + 1;
+                rows[i].cells[4].innerHTML = `
+                    <button onclick="editProduct(${i})" class="edit-btn btn-sm">Sửa</button>
+                    <button onclick="deleteProduct(${i})" class="delete-btn btn-sm">Xóa</button>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .price {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Thêm sản phẩm mới</h2>
+        <form id="productForm" onsubmit="addProduct(event)">
+            <div class="form-group">
+                <label>Tên sản phẩm:</label>
+                <input type="text" id="productName" required>
+            </div>
+            <div class="form-group">
+                <label>Giá sản phẩm (VND):</label>
+                <input type="number" id="productPrice" min="0" required>
+            </div>
+            <div class="form-group">
+                <label>Mô tả sản phẩm:</label>
+                <textarea id="productDescription" rows="3" required></textarea>
+            </div>
+            <button type="submit">Thêm sản phẩm</button>
+        </form>
+
+        <table id="productTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá (VND)</th>
+                    <th>Mô tả</th>
+                </tr>
+            </thead>
+            <tbody id="productList"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN').format(price);
+        }
+
+        function addProduct(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('productPrice').value;
+            const description = document.getElementById('productDescription').value;
+
+            const tbody = document.getElementById('productList');
+            const rowNumber = tbody.rows.length + 1;
+            const row = tbody.insertRow();
+
+            row.insertCell(0).textContent = rowNumber;
+            row.insertCell(1).textContent = name;
+            row.insertCell(2).textContent = formatPrice(price);
+            row.cells[2].className = 'price';
+            row.insertCell(3).textContent = description;
+
+            document.getElementById('productForm').reset();
+        }
+    </script>
+</body>
+</html>

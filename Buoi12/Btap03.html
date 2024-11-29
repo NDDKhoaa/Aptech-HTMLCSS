@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Font Size</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        div {
+            font-size: 16px; /* Initial font size */
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="text">Đây là đoạn văn bản cần thay đổi kích thước</div>
+    <button onclick="increaseFontSize()">Tăng kích thước</button>
+    <button onclick="decreaseFontSize()">Giảm kích thước</button>
+
+    <script>
+        function increaseFontSize() {
+            const textElement = document.getElementById('text');
+            const currentSize = parseFloat(window.getComputedStyle(textElement, null).getPropertyValue('font-size'));
+            textElement.style.fontSize = (currentSize + 2) + 'px';
+        }
+
+        function decreaseFontSize() {
+            const textElement = document.getElementById('text');
+            const currentSize = parseFloat(window.getComputedStyle(textElement, null).getPropertyValue('font-size'));
+            textElement.style.fontSize = (currentSize - 2) + 'px';
+        }
+    </script>
+</body>
+</html>

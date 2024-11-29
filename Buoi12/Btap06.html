@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input:hover {
+            border-color: red;
+        }
+
+        input:focus {
+            background-color: pink;
+            color: blue;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <form id="loginForm" onsubmit="return validateForm(event)">
+            <div class="form-group">
+                <label id="usernameLabel">Username:</label>
+                <input type="text" id="username">
+                <div id="usernameError" class="error"></div>
+            </div>
+
+            <div class="form-group">
+                <label id="passwordLabel">Password:</label>
+                <input type="password" id="password">
+                <div id="passwordError" class="error"></div>
+            </div>
+            <div class="form-group">
+                <select id="language" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="vi">Tiếng Việt</option>
+                </select>
+            </div>
+            <button type="submit" id="submitButton">Login</button>
+        </form>
+
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                username: 'Username:',
+                password: 'Password:',
+                submit: 'Login',
+                usernameError: 'Username is required and must be max 20 characters',
+                passwordError: 'Password must be at least 6 characters and contain both letters and numbers'
+            },
+            vi: {
+                username: 'Tên đăng nhập:',
+                password: 'Mật khẩu:',
+                submit: 'Đăng nhập',
+                usernameError: 'Tên đăng nhập không được để trống và tối đa 20 ký tự',
+                passwordError: 'Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ và số'
+            }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('language').value;
+            document.getElementById('usernameLabel').textContent = translations[lang].username;
+            document.getElementById('passwordLabel').textContent = translations[lang].password;
+            document.getElementById('submitButton').textContent = translations[lang].submit;
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            const lang = document.getElementById('language').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            let isValid = true;
+
+            // Username validation
+            if (!username || username.length > 20) {
+                document.getElementById('usernameError').textContent = translations[lang].usernameError;
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('usernameError').style.display = 'none';
+            }
+
+            // Password validation
+            const hasLetters = /[a-zA-Z]/.test(password);
+            const hasNumbers = /[0-9]/.test(password);
+            if (!password || password.length < 6 || !hasLetters || !hasNumbers) {
+                document.getElementById('passwordError').textContent = translations[lang].passwordError;
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+
+            return isValid;
+        }
+
+        // Initialize language
+        changeLanguage();
+    </script>
+</body>
+
+</html>

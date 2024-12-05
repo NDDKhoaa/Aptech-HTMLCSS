@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Our Clothing Store</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="mailto:nguyenvana@gmail.com">Contact</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section id="home">
+        <div>
+            <div class="left">
+                <div class="hero">
+                    <h2 class="findys">Find Your Style</h2>
+                    <p>Explore the latest fashion trends and timeless designs.</p>
+                </div>
+            </div>
+            <div class="right">
+                <img src="https://maison-decor.vn/upload/products_image/cici-clothes-shop-products-image-280-1602044693-79N2D.jpg"
+                    alt="Clothing Store">
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-form">
+            <input type="text" id="productName" placeholder="Product Name">
+            <input type="url" id="productImage" placeholder="Product Image URL">
+            <button onclick="addProduct()" type="button">Add Product</button>
+        </div>
+        <div class="product-list" id="productList">
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Clothing Store. All rights reserved.</p>
+    </footer>
+
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3>Edit Product</h3>
+            <input type="text" id="editProductName">
+            <input type="url" id="editProductImage">
+            <div class="modal-buttons">
+                <button onclick="saveEdit()">Save</button>
+                <button onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let products = [
+            {
+                id: 1,
+                name: "T-Shirt",
+                image: "https://canifa.com/blog/wp-content/uploads/2022/10/T-shirt-la-gi.webp"
+            },
+            {
+                id: 2,
+                name: "Jeans",
+                image: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lxpo46qo6v2x9b"
+            }
+        ];
+        let currentEditIndex = null;
+
+        function getMaxId() {
+            return products.reduce((maxId, product) =>
+                Math.max(maxId, product.id), 0);
+        }
+
+        function addProduct() {
+            const productName = document.getElementById('productName');
+            const productImage = document.getElementById('productImage');
+            if (!productName.value || !productImage.value) {
+                alert('Please fill in all fields');
+                return;
+            }
+            try {
+                const newProduct = {
+                    id: getMaxId() + 1,
+                    name: productName.value,
+                    image: productImage.value
+                };
+                products.push(newProduct);
+                renderProducts();
+                productName.value = '';
+                productImage.value = '';
+            } catch (error) {
+                alert('Error adding product. Please try again.');
+            }
+        }
+
+        function deleteProduct(index) {
+            products.splice(index, 1);
+            renderProducts();
+        }
+
+        function editProduct(index) {
+            currentEditIndex = index;
+            const product = products[index];
+            document.getElementById('editProductName').value = product.name;
+            document.getElementById('editProductImage').value = product.image;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function saveEdit() {
+            const updatedName = document.getElementById('editProductName').value;
+            const updatedImage = document.getElementById('editProductImage').value;
+
+            if (currentEditIndex !== null) {
+                products[currentEditIndex] = { ...products[currentEditIndex], name: updatedName, image: updatedImage };
+                renderProducts();
+                closeModal();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function renderProducts() {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+
+            products.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+            <p>ID: ${product.id}</p>
+            <img src="${product.image}" alt="${product.name}">
+            <h3 style="color :#4CAF50;">${product.name}</h3>
+            <button onclick="editProduct(${index})">Edit</button>
+            <button onclick="deleteProduct(${index})">Delete</button>
+        `;
+                productList.appendChild(productCard);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            renderProducts();
+        });
+    </script>
+</body>
+
+</html>
